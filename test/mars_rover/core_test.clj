@@ -18,16 +18,17 @@
     (is (= (execute "MMMM") "0:4:N"))
     (is (= (execute "MMMMM") "0:5:N"))))
 
-(deftest execute-right-turn
+(deftest execute-turn
   (testing "Turn right should update the orientation"
     (is (= (execute "R") "0:0:E"))
     (is (= (execute "RR") "0:0:S"))
     (is (= (execute "RRR") "0:0:W"))
-    (is (= (execute "RRRR") "0:0:N"))))
-
-(deftest execute-left-turn
+    (is (= (execute "RRRR") "0:0:N")))
   (testing "Turn left should update the orientation"
     (is (= (execute "L") "0:0:W"))
     (is (= (execute "LL") "0:0:S"))
     (is (= (execute "LLL") "0:0:E"))
-    (is (= (execute "LLLL") "0:0:N"))))
+    (is (= (execute "LLLL") "0:0:N")))
+  (testing "Mixed turn commands should update the orientation"
+    (is (= (execute "LR") "0:0:N"))
+    (is (= (execute "RRL") "0:0:E"))))
