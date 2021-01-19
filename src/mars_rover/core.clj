@@ -17,10 +17,18 @@
   (let [orientation (:orientation rover)]
     (cond
       (= orientation "N") (rover-with-orientation rover "E")
-      (= orientation "E") (rover-with-orientation rover "S"))))
+      (= orientation "E") (rover-with-orientation rover "S")
+      (= orientation "S") (rover-with-orientation rover "W")
+      (= orientation "W") (rover-with-orientation rover "N"))))
 
 (defn turn-left
-  [rover])
+  [rover]
+  (let [orientation (:orientation rover)]
+    (cond
+      (= orientation "N") (rover-with-orientation rover "W")
+      (= orientation "W") (rover-with-orientation rover "S")
+      (= orientation "S") (rover-with-orientation rover "E")
+      (= orientation "E") (rover-with-orientation rover "N"))))
 
 (defn rover-to-string
   [rover]
