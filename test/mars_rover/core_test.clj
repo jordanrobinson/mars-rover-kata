@@ -20,4 +20,5 @@
 
 (deftest execute-turn
   (testing "Turn right to face East"
-    (is (= (execute "R") "0:0:E"))))
+    (is (= (execute "R") "0:0:E"))
+    (is (= (execute "RR") "0:0:S"))))
