@@ -32,3 +32,7 @@
   (testing "Mixed turn commands should update the orientation"
     (is (= (execute "LR") "0:0:N"))
     (is (= (execute "RRL") "0:0:E"))))
+
+(deftest execute-turn-and-move
+  (testing "Turn right and move east"
+    (is (= (execute "RM") "1:0:E"))))

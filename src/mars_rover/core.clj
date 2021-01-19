@@ -2,9 +2,19 @@
 
 (defn move-forward
   [rover]
-  {:x-position (:x-position rover)
-   :y-position (inc (:y-position rover))
-   :orientation (:orientation rover)})
+  (let [orientation (:orientation rover)]
+    (cond
+      (= orientation "N")
+      {:x-position  (:x-position rover)
+       :y-position  (inc (:y-position rover))
+       :orientation (:orientation rover)}
+      (= orientation "E")
+      {:x-position  (inc (:x-position rover))
+       :y-position  (:y-position rover)
+       :orientation (:orientation rover)})))
+
+
+
 
 (defn rover-with-orientation
   [rover orientation]
