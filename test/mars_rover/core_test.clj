@@ -3,10 +3,10 @@
     [clojure.test :refer :all]
     [mars-rover.core :refer :all]))
 
-;(deftest acceptance-test
-;  (testing "Expected input for rover returns position after movement"
-;    (is (= (execute "MMRMMLM") "2:3:N"))
-;    (is (= (execute "MMMMMMMMMM") "0:0:N"))))
+(deftest acceptance-test
+  (testing "Expected input for rover returns position after movement"
+    (is (= (execute "MMRMMLM") "2:3:N"))
+    (is (= (execute "MMMMMMMMMM") "0:0:N"))))
 
 (deftest execute-move-commands
   (testing "Without instructions, returns default position of 0:0:N"
@@ -35,4 +35,13 @@
 
 (deftest execute-turn-and-move
   (testing "Turn right and move east"
-    (is (= (execute "RM") "1:0:E"))))
+    (is (= (execute "RM") "1:0:E"))
+    (is (= (execute "MRRM") "0:0:S"))
+    (is (= (execute "RMLLM") "0:0:W"))))
+
+(deftest wraps-border
+  (testing "Rover wraps around the map when exceeding boundaries"
+    (is (= (execute "MMMMMMMMMM") "0:0:N"))
+    (is (= (execute "MMMMMMMMMMMRM") "1:1:E"))
+    (is (= (execute "LMMMMMMMMMM") "0:0:W"))
+    (is (= (execute "MMMMMMMMMMLM") "9:0:W"))))
